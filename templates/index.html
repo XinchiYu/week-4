@@ -62,8 +62,8 @@
 	<div id="map"></div>
 
 	<div class="tooltip">
-		<p class="tooltip-text" id="title">This is the title</p>
-		<p class="tooltip-text" id="price">This is the price</p>
+		<p class="tooltip-text" id="latitude">This is the latitude</p>
++		<p class="tooltip-text" id="longitude">This is the longitude</p>
 	</div>
 
 	<div class="menu">
@@ -108,8 +108,8 @@
     		eventOutputContainer.innerHTML = e.data;
 		};
 		var tooltip = d3.select("div.tooltip");
-		var tooltip_title = d3.select("#title");
-		var tooltip_price = d3.select("#price");
+		var tooltip_latitude = d3.select("#latitude");
++		var tooltip_longitude = d3.select("#longitude");
 		var map = L.map('map').setView([22.539029, 114.062076], 16);
 		//this is the OpenStreetMap tile implementation
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -148,8 +148,8 @@
 					.append("circle")
 					.on("mouseover", function(d){
 						tooltip.style("visibility", "visible");
-						tooltip_title.text(d.properties.name);
-						tooltip_price.text("Price: ￥" + d.properties.price);
+						tooltip_latitude.text("Latitude: " + d.geometry.coordinates[0]);
++						tooltip_longitude.text("Longitude: " + d.geometry.coordinates[1]);
 					})
 					.on("mousemove", function(){
 						tooltip.style("top", (d3.event.pageY-10)+"px")
